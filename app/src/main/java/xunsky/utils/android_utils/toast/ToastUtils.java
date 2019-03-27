@@ -6,13 +6,13 @@ import android.widget.Toast;
 import xunsky.utils.context_provider.ContextProvider;
 
 public class ToastUtils {
-    private static Toast sToast;
+    public static Toast sToast;
     public static void toast(String message){
         if (sToast==null){
             synchronized (ToastUtils.class){
                 if (sToast==null){
                     sToast=Toast.makeText(ContextProvider.get(), "", Toast.LENGTH_LONG);
-                    sToast.setGravity(Gravity.CENTER, 0,0);
+//                    sToast.setGravity(Gravity.CENTER, 0,0);
                 }
             }
         }
