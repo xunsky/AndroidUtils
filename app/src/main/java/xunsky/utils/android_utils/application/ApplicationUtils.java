@@ -75,10 +75,10 @@ public class ApplicationUtils {
     /**
      * 获取应用的version name
      */
-    public static String getVersionName(Context context) {
+    public static String getVersionName() {
         try {
             PackageManager manager = ContextProvider.get().getPackageManager();
-            PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+            PackageInfo info = manager.getPackageInfo(ContextProvider.get().getPackageName(), 0);
             return info.versionName;
         } catch (Exception e) {
             e.printStackTrace();
