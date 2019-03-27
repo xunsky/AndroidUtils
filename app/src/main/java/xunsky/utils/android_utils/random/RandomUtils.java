@@ -1,5 +1,9 @@
 package xunsky.utils.android_utils.random;
 
+import android.graphics.Color;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomUtils {
@@ -27,8 +31,23 @@ public class RandomUtils {
         Random random = get();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            sb.append( allChar.charAt( random.nextInt( allChar.length() ) ) );
+            sb.append( allChar.charAt( random.nextInt(allChar.length())));
         }
         return sb.toString();
+    }
+
+    public static int color(){
+        Random random = get();
+        List<Integer> colors=new ArrayList<>();
+        colors.add(Color.BLACK);
+        colors.add(Color.BLUE);
+        colors.add(Color.RED);
+        colors.add(Color.YELLOW);
+        colors.add(Color.GRAY);
+        colors.add(Color.GREEN);
+        colors.add(Color.DKGRAY);
+        colors.add(Color.LTGRAY);
+
+        return random.nextInt(colors.size());
     }
 }
