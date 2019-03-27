@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.telephony.CellLocation;
 import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
@@ -48,7 +49,7 @@ public class NetStatusUtils {
 
     /**
      * 判断是否处于wifi环境
-     * 注意需要权限:Manifest.permission.ACCESS_NETWORK_STATE
+     * 注意需要权限:Manifest.permission.ACCESS_WIFI_STATE
      */
     public static boolean isWifi() {
         Context context=ContextProvider.get();
@@ -65,31 +66,24 @@ public class NetStatusUtils {
      * 跳转至网络设置页面
      */
     public static void openNetworkSetting(Activity activity) {
-        Intent intent = new Intent("/");
-        ComponentName cm = new ComponentName("com.android.settings",
-                "com.android.settings.WirelessSettings");
-        intent.setComponent(cm);
-        intent.setAction("android.intent.action.VIEW");
+        Intent intent=new Intent(Settings.ACTION_WIFI_SETTINGS);
         activity.startActivityForResult(intent, 0);
     }
     public static void openNetworkSetting() {
-        Intent intent = new Intent("/");
-        ComponentName cm = new ComponentName("com.android.settings",
-                "com.android.settings.WirelessSettings");
-        intent.setComponent(cm);
-        intent.setAction("android.intent.action.VIEW");
+        Intent intent=new Intent(Settings.ACTION_WIFI_SETTINGS);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ContextProvider.get().startActivity(intent);
     }
 
     /**
      * 获取网络状态
+     * Manifest.permission.ACCESS_NETWORK_STATE
      */
     public static String GetNetworkType() {
         Context context=ContextProvider.get();
         String strNetworkType = "NONE";
 
-        NetworkInfo networkInfo = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        @SuppressLint("MissingPermission") NetworkInfo networkInfo = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 strNetworkType = "WIFI";
@@ -158,7 +152,8 @@ public class NetStatusUtils {
      * 获取基站编号
      * 需要权限:Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION
      */
-    public static int getCid(Context context) {
+    public static int getCid() {
+        Context context=ContextProvider.get();
         int cid = 0;
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (tm != null) {
