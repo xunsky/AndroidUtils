@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+    }
+}
+
+dependencies {
+    implementation 'com.github.xunsky:ContextProvider:0.0.1'
+}
