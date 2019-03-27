@@ -6,15 +6,37 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Environment;
 import android.view.Window;
 import android.view.WindowManager;
 
 import java.util.List;
 
+import xunsky.utils.android_utils.encrypt.Md5Utils;
 import xunsky.utils.context_provider.ContextProvider;
 
 public class ApplicationUtils {
+    /**
+     * 通过签名获取其唯一字符串
+     */
+    public static String getSignature(Context context) {
+        PackageManager pm = context.getPackageManager();
+        PackageInfo pi;
+        StringBuilder sb = new StringBuilder();
+        try {
+            pi = pm.getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            Signature[] signatures = pi.signatures;
+            for (int i = 0; i < signatures.length; i++) {
+                sb.append(signatures[i]);
+            }
+            String md5 = Md5Utils.getMD5(sb.toString());
+            return md5;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * 判断目标应用是否安装
      */
