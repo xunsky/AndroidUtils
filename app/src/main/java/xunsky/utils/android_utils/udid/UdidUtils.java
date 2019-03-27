@@ -22,6 +22,8 @@ import android.os.RemoteException;
 import android.provider.Settings.Secure;
 import android.util.Log;
 
+import xunsky.utils.context_provider.ContextProvider;
+
 
 /**
  * 获取设备唯一的uuid
@@ -145,7 +147,10 @@ public class UdidUtils implements ServiceConnection{
 	 * @return the OpenUDID
 	 */
 	public static String getOpenUDID() {
-		if (!mInitialized) Log.e("OpenUDID", "Initialisation isn't done");
+		if (!mInitialized) {
+            sync(ContextProvider.get());
+            Log.e("OpenUDID", "Initialisation isn't done");
+        }
 		return OpenUDID;
 	}
 	
