@@ -61,13 +61,15 @@ import xunsky.utils.context_provider.ContextProvider;
 
 import static android.graphics.BlurMaskFilter.Blur;
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 16/12/13
- *     desc  : SpannableString相关工具类
- * </pre>
+/*
+        SpannableStringBuilder spannableStringBuilder = new SpannableUtils()
+                .append(string)
+                .appendImage(R.mipmap.ic_launcher_round)
+                .appendSpace(10, Color.RED)
+                .setUnderline()
+                .setUrl("http://www.baidu.com")
+                .append(string)
+                .create();
  */
 public final class SpannableUtils {
     private static final int COLOR_DEFAULT = 0xFEFFFFFF;

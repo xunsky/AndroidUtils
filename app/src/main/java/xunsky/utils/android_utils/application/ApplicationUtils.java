@@ -1,5 +1,6 @@
 package xunsky.utils.android_utils.application;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -12,6 +13,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.os.Vibrator;
+import android.support.annotation.RequiresPermission;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -202,5 +205,33 @@ public class ApplicationUtils {
         }
         view.draw(canvas);
         return ret;
+    }
+
+    /**
+     * 震动相关
+     */
+    private static Vibrator vibrator;
+    private static Vibrator getVibrator() {
+        if (vibrator == null) {
+            vibrator = (Vibrator) ContextProvider.get().getSystemService(Context.VIBRATOR_SERVICE);
+        }
+        return vibrator;
+    }
+
+    /**
+     * 需要权限
+     *  <uses-permission android:name="android.permission.VIBRATE" />
+     */
+    @RequiresPermission(Manifest.permission.VIBRATE)
+    public static void vibrate(final long milliseconds) {
+        Vibrator vibrator = getVibrator();
+        if (vibrator == null) return;
+        vibrator.vibrate(milliseconds);
+    }
+    @RequiresPermission(Manifest.permission.VIBRATE)
+    public static void cancel() {
+        Vibrator vibrator = getVibrator();
+        if (vibrator == null) return;
+        vibrator.cancel();
     }
 }
