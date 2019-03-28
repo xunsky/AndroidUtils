@@ -8,8 +8,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Environment;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import java.util.List;
 
@@ -146,5 +148,38 @@ public class ApplicationUtils {
      */
     public static String getDownloadCachePath(){
         return Environment.getDownloadCacheDirectory().getPath();
+    }
+
+    /**
+     * 打开输入法
+     */
+    public static void openKeybord(View v) {
+        InputMethodManager imm = (InputMethodManager) v.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(v, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+    public static void openKeybord(Window window) {
+        InputMethodManager imm = (InputMethodManager) window.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        imm.showSoftInputFromInputMethod(window.getDecorView().getWindowToken(), InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
+    /**
+     * 关闭输入法
+     */
+    public static void closeKeybord(View v) {
+        InputMethodManager imm = (InputMethodManager) v.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+    }
+    public static void closeKeybord(Window window) {
+        InputMethodManager imm = (InputMethodManager) window.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(window.getDecorView().getWindowToken(), 0);
     }
 }
