@@ -35,9 +35,9 @@ public class ThreadPoolUtils {
      * post一个任务到主线程
      */
     public static void post(Runnable runnable){
-        getHandler().post(runnable);
+        post(runnable,0);
     }
-    public static void postDelay(Runnable runnable,long delayTime){
+    public static void post(Runnable runnable,long delayTime){
         getHandler().postDelayed(runnable,delayTime);
     }
 
