@@ -7,6 +7,10 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.view.View;
 import android.view.Window;
@@ -181,5 +185,22 @@ public class ApplicationUtils {
         InputMethodManager imm = (InputMethodManager) window.getContext()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(window.getDecorView().getWindowToken(), 0);
+    }
+
+    /**
+     * view转Bitmap
+     */
+    public static Bitmap view2Bitmap(final View view) {
+        if (view == null) return null;
+        Bitmap ret = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(ret);
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null) {
+            bgDrawable.draw(canvas);
+        } else {
+            canvas.drawColor(Color.WHITE);
+        }
+        view.draw(canvas);
+        return ret;
     }
 }
