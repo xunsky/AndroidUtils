@@ -1,10 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 25
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 25
     }
 }
 
@@ -12,4 +12,5 @@ dependencies {
     implementation 'com.github.xunsky:ContextProvider:0.0.1'
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.59'
     implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.android.support:appcompat-v7:25.3.1'
 }
