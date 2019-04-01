@@ -23,6 +23,15 @@ public class RandomUtils {
         return random.nextInt(max-min)+min;
     }
 
+    public static boolean coin(){
+        return integer(0,1)==1;
+    }
+
+    public static boolean random(float probability){
+        Random random = get();
+        float nextFloat = random.nextFloat();
+        return probability>=nextFloat;
+    }
 
     private static final String allChar = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String letterChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
