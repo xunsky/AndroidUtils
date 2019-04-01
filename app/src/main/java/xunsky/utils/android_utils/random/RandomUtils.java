@@ -24,7 +24,7 @@ public class RandomUtils {
     }
 
     public static boolean coin(){
-        return integer(0,1)==1;
+        return integer(0,2)==1;
     }
 
     public static boolean random(float probability){
