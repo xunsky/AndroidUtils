@@ -13,11 +13,13 @@ public class RandomColorFragment extends Fragment {
     public static RandomColorFragment newInstance(){
         return new RandomColorFragment();
     }
+
+    private int color=RandomUtils.color();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ImageView iv = new ImageView(getContext());
-        iv.setBackgroundColor(RandomUtils.color());
+        iv.setBackgroundColor(color);
         return iv;
     }
 }
