@@ -1,21 +1,17 @@
 package xunsky.utils.android_utils.random;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import xunsky.utils.android_utils.random.RandomUtils;
-
-public class RamdonColorFragment extends Fragment {
-    public static RamdonColorFragment newInstance(){
-        return new RamdonColorFragment();
+public class RandomColorFragment extends Fragment {
+    public static RandomColorFragment newInstance(){
+        return new RandomColorFragment();
     }
     @Nullable
     @Override
