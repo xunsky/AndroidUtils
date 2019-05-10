@@ -57,6 +57,6 @@ public class RandomUtils {
         colors.add(Color.DKGRAY);
         colors.add(Color.LTGRAY);
 
-        return random.nextInt(colors.size());
+        return colors.get(random.nextInt(colors.size()));
     }
 }
