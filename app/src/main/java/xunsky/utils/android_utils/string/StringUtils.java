@@ -13,6 +13,24 @@ import java.io.IOException;
  */
 public class StringUtils {
     /**
+     * 打印当前价值
+     */
+    public static String printMethodStatck() {
+        Throwable ex = new Throwable();
+        StackTraceElement[] stackElements = ex.getStackTrace();
+        StringBuilder sb = new StringBuilder();
+        if (stackElements != null) {
+            for (int i = 0; i < stackElements.length; i++) {
+                sb.append(stackElements[i].getClassName())
+                        .append(".")
+                        .append(stackElements[i].getMethodName())
+                        .append("() line:")
+                        .append(stackElements[i].getLineNumber());
+            }
+        }
+        return sb.toString();
+    }
+    /**
      * string与base64的互相转换
      */
     public static String string2base64(String string){
