@@ -1,5 +1,9 @@
 package xunsky.utils.android_utils.file;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,7 +32,6 @@ public final class FileUtils {
     private FileUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
-
 
 
     /**
@@ -771,5 +774,55 @@ public final class FileUtils {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void writeBytesToFile(InputStream is, File file) throws IOException {
+        FileOutputStream fos = null;
+        try {
+            byte[] data = new byte[2048];
+            int nbread = 0;
+            fos = new FileOutputStream(file);
+            while ((nbread = is.read(data)) > -1) {
+                fos.write(data, 0, nbread);
+            }
+        } catch (Exception ex) {
+        } finally {
+            if (fos != null) {
+                fos.close();
+            }
+        }
+    }
+
+    public static boolean copyAssetFile2Cache(Context context, String fileName) {
+        FileOutputStream fos = null;
+
+        try {
+            File file = new File(context.getCacheDir().getAbsolutePath(), fileName);
+
+            if (file.exists() && file.length() > 0)
+                return true;
+            InputStream is = context.getAssets().open(fileName);
+
+            byte[] data = new byte[2048];
+            int nbread = 0;
+            fos = new FileOutputStream(file);
+            while ((nbread = is.read(data)) > -1) {
+                fos.write(data, 0, nbread);
+            }
+            if (is!=null){
+                is.close();
+            }
+            return true;
+
+        } catch (Exception ex) {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }
