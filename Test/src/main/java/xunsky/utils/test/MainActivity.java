@@ -15,7 +15,6 @@ import xunsky.utils.android_utils.log.LogUtils;
 import xunsky.utils.android_utils.string.PrintUtils;
 
 public class MainActivity extends AppCompatActivity {
-    Boolean flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("meee","("+Thread.currentThread().getStackTrace()[2].getFileName()+":"+Thread.currentThread().getStackTrace()[2].getLineNumber()+")\n"
 //                +flag);
 
-        Object obj=flag;
-        AssertUtils.makeSure(obj);
+        AssertUtils.makeSure(false);
     }
 }
