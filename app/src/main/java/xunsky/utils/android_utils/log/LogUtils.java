@@ -53,8 +53,6 @@ public class LogUtils {
     public static long pastDay(File logFile){
         try{
             String name = logFile.getName();
-            name="2019-08-19";
-
 
             Date date = LogUtils.sDayFormatter.parse(name);
 
